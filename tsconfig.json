@@ -1,0 +1,14 @@
+// https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
+
+{
+  "compilerOptions": {
+    "strictNullChecks": true,
+    "rootDir": "..",
+    "outFile": "compiled.js",
+    "noImplicitAny": true,
+    "watch": true,
+    "removeComments": true
+  },
+  "compileOnSave": true,
+  "include": ["./**/*.ts"]
+}

@@ -22,13 +22,14 @@ type Maybe<T> = Just<T> | Nothing
 const Just = <T>(val: T): Just<T> => ({ kind: MaybeType.JUST, value: val })
 const Nothing = (): Nothing => ({ kind: MaybeType.NOTHING })
 
-// trying different approaches to pattern matching,
-// ideally I would like something along the lines of
-// not really Haskell syntax, more or less but you get the idea
+// ideally I would like something along the lines of the following
 // maybeDivide = (Num n) => n -> n -> Maybe Num
 // maybeDivide _ 0 = Nothing
-// maybeDivide a b = a / b 
+// maybeDivide a b = Just a / b 
 
+// the problem I have with the following approach is that switch is not
+// an expression, so I can't return that
+// but I love switch's exhaustiveness and relative simplicity
 const maybeDivide = (a: number, b: number): Maybe<number> => {
   switch (b) {
     case 0:  return Nothing()
@@ -37,8 +38,16 @@ const maybeDivide = (a: number, b: number): Maybe<number> => {
 }
 
 // use it like this
-let result = maybeDivide(10, 0)
+let result: Maybe<number> = maybeDivide(10, 0)
 switch (result.kind) {
   case MaybeType.JUST:    console.log(result.value)
   case MaybeType.NOTHING: console.log('error division by 0') // TODO what do we do here?
+}
+
+// which could become somethig like
+const unpacker = <T>(packed: Maybe<T>, defaultValue: T): T => {
+  switch (packed.kind) {
+    case MaybeType.JUST:    return packed.value
+    case MaybeType.NOTHING: return defaultValue
+  }  
 }

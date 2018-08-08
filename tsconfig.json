@@ -3,12 +3,16 @@
 {
   "compilerOptions": {
     "strictNullChecks": true,
-    "rootDir": "..",
-    "outFile": "compiled.js",
+    "rootDir": ".",
+    "outDir": "compiled",
+    "sourceRoot": ".",
+    "sourceMap": true,
+    "declaration": true,
+    "lib": [
+      "es2015"
+    ],
     "noImplicitAny": true,
-    "watch": true,
     "removeComments": true
   },
-  "compileOnSave": true,
   "include": ["./**/*.ts"]
 }

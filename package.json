@@ -1,0 +1,21 @@
+{
+  "name": "typescript-playground",
+  "version": "1.0.0",
+  "description": "Where I do my experiments",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lazywithclass/typescript-playground.git"
+  },
+  "author": "Alberto Zaccagni (lazywithclass)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lazywithclass/typescript-playground/issues"
+  },
+  "homepage": "https://github.com/lazywithclass/typescript-playground#readme",
+  "devDependencies": {
+    "@types/node": "^10.5.6",
+    "@types/request-promise": "^4.1.42",
+    "request": "^2.87.0",
+    "request-promise": "^4.2.2"
+  }
+}

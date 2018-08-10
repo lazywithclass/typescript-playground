@@ -14,4 +14,3 @@ var area = function (s) {
         default: return assertNever(s);
     }
 };
-//# sourceMappingURL=refinement-types.js.map

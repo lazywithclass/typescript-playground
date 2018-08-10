@@ -17,4 +17,3 @@ var unpacker = function (packed, defaultValue) {
         case 1: return defaultValue;
     }
 };
-//# sourceMappingURL=maybe.js.map

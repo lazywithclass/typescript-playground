@@ -12,4 +12,3 @@ test(b);
 var c = function (x) { };
 var d = function (x) { };
 test(d);
-//# sourceMappingURL=generic.js.map

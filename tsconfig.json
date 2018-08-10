@@ -5,9 +5,6 @@
     "strictNullChecks": true,
     "rootDir": ".",
     "outDir": "compiled",
-    "sourceRoot": ".",
-    "sourceMap": true,
-    "declaration": true,
     "lib": [
       "es2015"
     ],

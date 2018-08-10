@@ -112,4 +112,3 @@ var asyncFunction = function () { return __awaiter(_this, void 0, void 0, functi
     }
 }); }); };
 asyncFunction().then(function (result) { return log('SUCCESS 2!', result); }, function (error) { return log('ERROR 2!', error); });
-//# sourceMappingURL=async-await-either.js.map

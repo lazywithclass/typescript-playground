@@ -13,6 +13,22 @@ let funx1 = () => {}, funx2 = () => {}, funx3 = () => {}
 // no need to repeat key and value if they are the same
 let funxs = { funx1, funx2, funx3 }
 
+type A = (x: string) => any
+function test(funx: A) { }
 
-// TODO expand on default values for types
-// directive<TScope extends IScope = IScope>
+// given a function as type Original you're allowed to pass a function of another type
+// Another, as long as Another is assignable to Original
+// https://github.com/Microsoft/TypeScript-Handbook/blob/master/pages/Type%20Compatibility.md#comparing-two-functions
+type B = () => any
+let b: B = () => {} 
+test(b)
+
+type C = (x: number) => any
+let c: C = (x: number) => {} 
+// error as C is not assignable to A
+// test(c)
+
+// same for B
+type D = (x: string) => any
+let d: D = (x: string) => {} 
+test(d)

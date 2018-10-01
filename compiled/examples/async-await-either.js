@@ -98,7 +98,10 @@ var unpack = function () { return __awaiter(_this, void 0, void 0, function () {
                 result = _a.sent();
                 switch (result.kind) {
                     case 0: return [2, result.value];
-                    case 1: return [2, result.value];
+                    case 1: {
+                        console.error(result.value);
+                        return [2, result.value];
+                    }
                 }
                 return [2];
         }

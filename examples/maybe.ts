@@ -17,13 +17,17 @@ interface Nothing {
   kind: MaybeType.NOTHING
 }
 
+// this could be parameterised also to have something else
+// instead of Nothing, like Number for a default value for example
 type Maybe<T> = Just<T> | Nothing
+// ...the parameterised version would look like this
+type MaybeP<T, N = Nothing> = Just<T> | N
 
 const Just = <T>(val: T): Just<T> => ({ kind: MaybeType.JUST, value: val })
 const Nothing = (): Nothing => ({ kind: MaybeType.NOTHING })
 
 // ideally I would like something along the lines of the following
-// maybeDivide = (Num n) => n -> n -> Maybe Num
+// maybeDivide = (Num n) => n -> n -> Maybe n
 // maybeDivide _ 0 = Nothing
 // maybeDivide a b = Just a / b 
 
@@ -37,12 +41,22 @@ const maybeDivide = (a: number, b: number): Maybe<number> => {
   }
 }
 
+// for a simple two elements return we could always use
+// the ternary operator
+const maybeDivide2 = (a: number, b: number): Maybe<number> => {
+  return b === 0 
+    ? Nothing()
+    : Just(a / b)
+}
+
 // use it like this
 let result: Maybe<number> = maybeDivide(10, 0)
 switch (result.kind) {
   case MaybeType.JUST:    console.log(result.value)
   case MaybeType.NOTHING: console.log('error division by 0') // TODO what do we do here?
 }
+
+// cool thing is that the info is encoded in types
 
 // which could become somethig like
 const unpacker = <T>(packed: Maybe<T>, defaultValue: T): T => {
@@ -51,3 +65,8 @@ const unpacker = <T>(packed: Maybe<T>, defaultValue: T): T => {
     case MaybeType.NOTHING: return defaultValue
   }  
 }
+
+// ok but why?
+// encode the information about data in the type, not in the value!
+// you get type safety, documentation, plus DRY as you will be removing lots
+// of null checks due to uncertainty

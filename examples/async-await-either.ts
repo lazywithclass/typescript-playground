@@ -60,7 +60,10 @@ const unpack = async <T>(): Promise<T> => {
   let result = await asyncFunctionThatErrors<T>()
   switch (result.kind) {
     case EitherType.LEFT:  return result.value
-    case EitherType.RIGHT: return result.value
+    case EitherType.RIGHT: { 
+      console.error(result.value)
+      return result.value 
+    }
   }
 }
 
@@ -74,8 +77,10 @@ asyncFunctionThatErrors().then(
 // the wrapping around Either
 // if so then we can just rewrite
 
-const asyncFunction = async <T>(): Promise<T> => await request.get({ url: 'https://httpbin.org/json', json: true })
+const asyncFunction = async <T>(): Promise<T> => 
+  await request.get({ url: 'https://httpbin.org/json', json: true })
 
 asyncFunction().then(
   (result) => log('SUCCESS 2!', result), 
   (error) => log('ERROR 2!', error))
+

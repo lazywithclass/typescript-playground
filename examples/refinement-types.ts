@@ -28,14 +28,14 @@ if (isNonZeroNumber(denominator)) { // notice `denominator` type here...
 // why can't I just write an `isNonZeroNumber` untyped function?
 // Exhaustiveness
 const assertNever = (x: never): never => { throw new Error('never') }
-interface Square { kind: "square"; size: number; }
+interface Square { kind: "square"; edge: number; }
 interface Circle { kind: "circle"; radius: number; }
 type Shape = Square | Circle;
 const area = (s: Shape) => {
   switch (s.kind) {
     // without any of the following lines
     // we get a compile time error
-    case "square": return s.size * s.size;
+    case "square": return s.edge * s.edge;
     case "circle": return Math.PI * s.radius ** 2; 
     default: return assertNever(s);
   }
